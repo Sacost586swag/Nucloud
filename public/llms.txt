@@ -1,0 +1,22 @@
+# NUCLOUD
+
+> Agencia de IA y automatización con sede en Cuenca, Ecuador. Construye agentes inteligentes, automatiza procesos con n8n, desarrolla aplicaciones web e implementa infraestructura cloud para empresas.
+
+## Servicios principales
+- **Automatización con IA**: agentes y chatbots que atienden clientes, califican leads y ejecutan tareas 24/7.
+- **Desarrollo web**: aplicaciones y sitios web a medida.
+- **Integraciones & APIs**: conexión entre sistemas existentes.
+- **Infraestructura Cloud**: despliegue y mantenimiento.
+- **Automatización de procesos**: workflows con n8n.
+
+## Contacto
+- Sitio: https://nucloudai.cloud/
+- WhatsApp: +593 96 332 2355
+- Instagram: https://www.instagram.com/nucloud_ai.ec/
+- Facebook: https://www.facebook.com/profile.php?id=61590267341001
+- Cobertura: Ecuador
+
+## Propuesta
+- Consultoría inicial gratuita
+- Respuesta en menos de 24 horas (días laborables)
+- Propuesta a medida, sin compromiso
