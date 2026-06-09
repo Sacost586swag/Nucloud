@@ -10,7 +10,12 @@ dist-ssr
 .agents/
 .claude/
 .remember/
-tsconfig.tsbuildinfo
+skills-lock.json
+
+# Build artifacts / caches (no deben versionarse)
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
 
 # Source assets (not needed for build)
 Assets Nucloud/
