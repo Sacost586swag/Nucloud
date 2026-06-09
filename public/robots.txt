@@ -1,0 +1,5 @@
+# NUCLOUD — robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://nucloudai.cloud/sitemap.xml
