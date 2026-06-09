@@ -3,7 +3,7 @@ import { CalendarCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { GlowBackground } from "@/components/ui/GlowBackground";
-import { NeuralMockup } from "./NeuralMockup";
+import { HeroVisual } from "./HeroVisual";
 import { WHATSAPP_LINK } from "@/constants/site";
 
 const container = {
@@ -72,9 +72,9 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Columna del mockup */}
+          {/* Columna del visual */}
           <div className="relative lg:pl-4">
-            <NeuralMockup />
+            <HeroVisual />
           </div>
         </div>
       </div>

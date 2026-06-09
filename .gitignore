@@ -5,3 +5,12 @@ dist-ssr
 .DS_Store
 .vite
 *.log
+
+# Agent / Claude tooling
+.agents/
+.claude/
+.remember/
+tsconfig.tsbuildinfo
+
+# Source assets (not needed for build)
+Assets Nucloud/

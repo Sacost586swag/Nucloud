@@ -1,10 +1,12 @@
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { TechMarquee } from "@/components/sections/TechMarquee";
 import { Services } from "@/components/sections/Services";
 import { Process } from "@/components/sections/Process";
 import { Benefits } from "@/components/sections/Benefits";
 import { About } from "@/components/sections/About";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
@@ -15,11 +17,13 @@ export function Home() {
       <Navbar />
       <main>
         <Hero />
+        <TechMarquee />
         <Services />
         <Process />
         <Benefits />
         <About />
         <FinalCTA />
+        <Contact />
       </main>
       <Footer />
       <FloatingWhatsApp />

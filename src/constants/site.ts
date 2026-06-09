@@ -14,6 +14,13 @@ export const WHATSAPP_MESSAGE = encodeURIComponent(
 
 export const WHATSAPP_LINK = `${WHATSAPP_URL}?text=${WHATSAPP_MESSAGE}`;
 
+/**
+ * Webhook de n8n que recibe los envíos del formulario de contacto.
+ * Todos los datos del formulario se envían aquí por POST.
+ */
+export const CONTACT_WEBHOOK_URL =
+  "https://n8n.nucloudai.cloud/webhook/afad80a4-573b-4bd0-8a88-f62ebe5e4856";
+
 export const PRIVACY_POLICY_URL =
   "https://docs.google.com/document/d/e/2PACX-1vQaj5a8hESVUWImPBvmY-jElDw8EF1NW9qWMppZvrKTq1YAtJWvl_Q4o5bQi9YleoQ75NJAO6vwX1Ii/pub";
 
@@ -29,4 +36,5 @@ export const NAV_LINKS = [
   { label: "Proceso", href: "#proceso" },
   { label: "Beneficios", href: "#beneficios" },
   { label: "Nosotros", href: "#nosotros" },
+  { label: "Contacto", href: "#contacto" },
 ] as const;

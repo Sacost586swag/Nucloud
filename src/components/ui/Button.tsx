@@ -45,7 +45,23 @@ export function Button({
   className,
   ...rest
 }: ButtonProps) {
-  const classes = cn(base, sizes[size], variants[variant], className);
+  const classes = cn(base, "overflow-hidden", sizes[size], variants[variant], className);
+
+  // Barrido de luz (shimmer) en hover, solo para la acción primaria.
+  const shimmer =
+    variant === "primary" ? (
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+      />
+    ) : null;
+
+  const content = (
+    <>
+      {shimmer}
+      <span className="relative inline-flex items-center gap-2">{children}</span>
+    </>
+  );
 
   if (href) {
     return (
@@ -57,14 +73,14 @@ export function Button({
         rel={external ? "noopener noreferrer" : undefined}
         {...rest}
       >
-        {children}
+        {content}
       </a>
     );
   }
 
   return (
     <button type="button" onClick={onClick} className={classes} {...rest}>
-      {children}
+      {content}
     </button>
   );
 }
