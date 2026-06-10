@@ -105,7 +105,61 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!--
+        Contenido SEO estático para crawlers que no ejecutan JavaScript
+        (varios bots de IA, validadores y fetchers iniciales de Google/Bing).
+        React reemplaza este contenido al montar — los usuarios ven la app
+        interactiva y los buscadores ven el contenido textual.
+      -->
+      <header style="padding:2rem 1.25rem;color:#fff;font-family:system-ui,sans-serif">
+        <p style="font-size:.85rem;text-transform:uppercase;letter-spacing:.18em;color:#FF8C1A">NUCLOUD · Ecuador</p>
+        <h1 style="font-size:2.25rem;font-weight:600;margin:.75rem 0;line-height:1.1">Automatización con Inteligencia Artificial para empresas que crecen</h1>
+        <p style="font-size:1.05rem;color:#A1A1AA;max-width:42rem;line-height:1.6">
+          NUCLOUD diseña sistemas inteligentes que automatizan procesos, mejoran la atención al cliente y escalan tu operación. Agentes de IA, automatización con n8n, desarrollo web e infraestructura cloud, hechos a medida para empresas en Ecuador y Latinoamérica.
+        </p>
+        <p style="margin-top:1.25rem;font-size:.95rem;color:#A1A1AA">
+          <strong style="color:#fff">Contacto:</strong>
+          WhatsApp <a href="https://wa.me/593963322355" style="color:#FF6B00">+593 96 332 2355</a> ·
+          Sede en Cuenca, Ecuador ·
+          Respuesta en menos de 24 h.
+        </p>
+      </header>
+
+      <section style="padding:1.5rem 1.25rem;color:#fff;font-family:system-ui,sans-serif">
+        <h2 style="font-size:1.6rem;font-weight:600;margin-bottom:.75rem">Servicios</h2>
+        <ul style="color:#A1A1AA;line-height:1.7;max-width:42rem;padding-left:1.1rem">
+          <li><strong style="color:#fff">Automatización con IA:</strong> agentes y chatbots que atienden clientes, califican leads y ejecutan tareas 24/7.</li>
+          <li><strong style="color:#fff">Desarrollo web:</strong> sitios y aplicaciones rápidas, escalables y orientadas a conversión.</li>
+          <li><strong style="color:#fff">Integraciones &amp; APIs:</strong> conexión entre CRM, ERP, mensajería y pagos en un único flujo de datos.</li>
+          <li><strong style="color:#fff">Infraestructura cloud:</strong> arquitecturas seguras, monitorizadas y preparadas para escalar.</li>
+          <li><strong style="color:#fff">Automatizaciones con n8n:</strong> workflows que orquestan procesos completos con IA y bases de datos.</li>
+          <li><strong style="color:#fff">Soluciones empresariales:</strong> sistemas a medida que digitalizan operaciones y eliminan trabajo manual.</li>
+        </ul>
+      </section>
+
+      <section style="padding:1.5rem 1.25rem;color:#fff;font-family:system-ui,sans-serif">
+        <h2 style="font-size:1.6rem;font-weight:600;margin-bottom:.75rem">Preguntas frecuentes</h2>
+
+        <h3 style="font-size:1.1rem;color:#fff;margin-top:1.25rem">¿Qué es la automatización con IA y cómo ayuda a mi empresa?</h3>
+        <p style="color:#A1A1AA;line-height:1.6;max-width:42rem">La automatización con IA usa agentes inteligentes y modelos de lenguaje para ejecutar tareas repetitivas sin intervención humana: atender clientes, calificar leads, generar reportes o gestionar pedidos. En NUCLOUD diseñamos sistemas a medida que reducen el trabajo manual hasta un 80% y operan 24/7.</p>
+
+        <h3 style="font-size:1.1rem;color:#fff;margin-top:1.25rem">¿Cuánto cuesta implementar un agente de IA o una automatización?</h3>
+        <p style="color:#A1A1AA;line-height:1.6;max-width:42rem">El coste depende del alcance: un chatbot básico parte desde un proyecto puntual, mientras que un sistema integrado con CRM, WhatsApp y bases de datos requiere más trabajo. Ofrecemos una consultoría inicial gratuita y propuesta a medida en menos de 24 horas, sin compromiso.</p>
+
+        <h3 style="font-size:1.1rem;color:#fff;margin-top:1.25rem">¿Cómo integran n8n con los sistemas que ya usa mi empresa?</h3>
+        <p style="color:#A1A1AA;line-height:1.6;max-width:42rem">n8n es una plataforma de automatización que conecta APIs, bases de datos y modelos de IA mediante workflows visuales. La usamos para orquestar procesos completos: capturar datos de WhatsApp o Instagram, procesarlos con IA, guardarlos en PostgreSQL y notificar a tu equipo, todo en tiempo real.</p>
+
+        <h3 style="font-size:1.1rem;color:#fff;margin-top:1.25rem">¿En qué países opera NUCLOUD?</h3>
+        <p style="color:#A1A1AA;line-height:1.6;max-width:42rem">NUCLOUD tiene sede en Cuenca, Ecuador, y trabaja con empresas en todo el país y en Latinoamérica de forma remota. Atendemos clientes en español, con respuesta en menos de 24 horas en días laborables y soporte continuo durante la implementación.</p>
+
+        <h3 style="font-size:1.1rem;color:#fff;margin-top:1.25rem">¿Cuánto tarda en estar listo un sistema con IA?</h3>
+        <p style="color:#A1A1AA;line-height:1.6;max-width:42rem">Una automatización sencilla puede estar operativa en una o dos semanas. Sistemas más complejos —agentes conversacionales con memoria, integraciones con CRM o ERP, infraestructura cloud— suelen entregarse entre cuatro y ocho semanas, divididos en fases con entregas funcionales desde el inicio.</p>
+
+        <h3 style="font-size:1.1rem;color:#fff;margin-top:1.25rem">¿Mis datos están seguros con la automatización con IA?</h3>
+        <p style="color:#A1A1AA;line-height:1.6;max-width:42rem">Sí. Desplegamos en infraestructura cloud cifrada, separamos credenciales y datos sensibles, y respetamos la política de privacidad acordada con cada cliente. Tus datos se usan únicamente para los flujos definidos contigo y nunca se comparten con terceros sin autorización expresa.</p>
+      </section>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -138,6 +138,45 @@ export const BENEFITS: Benefit[] = [
   },
 ];
 
+/** Preguntas frecuentes — diseñadas como bloques de respuesta extractables por IA (40-60 palabras). */
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export const FAQS: FAQItem[] = [
+  {
+    question: "¿Qué es la automatización con IA y cómo ayuda a mi empresa?",
+    answer:
+      "La automatización con IA usa agentes inteligentes y modelos de lenguaje para ejecutar tareas repetitivas sin intervención humana: atender clientes, calificar leads, generar reportes o gestionar pedidos. En NUCLOUD diseñamos sistemas a medida que reducen el trabajo manual hasta un 80% y operan 24/7.",
+  },
+  {
+    question: "¿Cuánto cuesta implementar un agente de IA o una automatización?",
+    answer:
+      "El coste depende del alcance: un chatbot básico parte desde un proyecto puntual, mientras que un sistema integrado con CRM, WhatsApp y bases de datos requiere más trabajo. Ofrecemos una consultoría inicial gratuita y propuesta a medida en menos de 24 horas, sin compromiso.",
+  },
+  {
+    question: "¿Cómo integran n8n con los sistemas que ya usa mi empresa?",
+    answer:
+      "n8n es una plataforma de automatización que conecta APIs, bases de datos y modelos de IA mediante workflows visuales. La usamos para orquestar procesos completos: capturar datos de WhatsApp o Instagram, procesarlos con IA, guardarlos en PostgreSQL y notificar a tu equipo, todo en tiempo real.",
+  },
+  {
+    question: "¿En qué países opera NUCLOUD?",
+    answer:
+      "NUCLOUD tiene sede en Cuenca, Ecuador, y trabaja con empresas en todo el país y en Latinoamérica de forma remota. Atendemos clientes en español, con respuesta en menos de 24 horas en días laborables y soporte continuo durante la implementación.",
+  },
+  {
+    question: "¿Cuánto tarda en estar listo un sistema con IA?",
+    answer:
+      "Una automatización sencilla puede estar operativa en una o dos semanas. Sistemas más complejos —agentes conversacionales con memoria, integraciones con CRM o ERP, infraestructura cloud— suelen entregarse entre cuatro y ocho semanas, divididos en fases con entregas funcionales desde el inicio.",
+  },
+  {
+    question: "¿Mis datos están seguros con la automatización con IA?",
+    answer:
+      "Sí. Desplegamos en infraestructura cloud cifrada, separamos credenciales y datos sensibles, y respetamos la política de privacidad acordada con cada cliente. Tus datos se usan únicamente para los flujos definidos contigo y nunca se comparten con terceros sin autorización expresa.",
+  },
+];
+
 export interface AboutPillar {
   title: string;
   description: string;

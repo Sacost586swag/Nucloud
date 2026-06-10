@@ -6,6 +6,7 @@ import { Process } from "@/components/sections/Process";
 import { Benefits } from "@/components/sections/Benefits";
 import { About } from "@/components/sections/About";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
@@ -22,6 +23,7 @@ export function Home() {
         <Process />
         <Benefits />
         <About />
+        <FAQ />
         <FinalCTA />
         <Contact />
       </main>
