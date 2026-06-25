@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlowBackground } from "@/components/ui/GlowBackground";
+import { Button } from "@/components/ui/Button";
 import { BENEFITS, type Benefit } from "@/constants/content";
 import { fadeUp, stagger, viewportOnce } from "@/hooks/useReveal";
 import { useCountUp } from "@/hooks/useCountUp";
 
-export function Benefits() {
+interface SectionProps {
+  /** Si se indica, muestra un CTA "Ver más" hacia la subpágina (solo en Home). */
+  detailTo?: string;
+}
+
+export function Benefits({ detailTo }: SectionProps = {}) {
   return (
     <section id="beneficios" className="relative scroll-mt-24 py-24 sm:py-32">
       <GlowBackground position="bottom" />
@@ -27,6 +34,15 @@ export function Benefits() {
             <BenefitCard key={b.label} benefit={b} />
           ))}
         </motion.div>
+
+        {detailTo && (
+          <div className="mt-12 flex justify-center">
+            <Button to={detailTo} variant="secondary" size="lg">
+              Ver los beneficios en detalle
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

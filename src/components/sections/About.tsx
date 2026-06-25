@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { GlowBackground } from "@/components/ui/GlowBackground";
 import { Button } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
@@ -7,7 +7,12 @@ import { ABOUT_PILLARS } from "@/constants/content";
 import { fadeUp, stagger, viewportOnce } from "@/hooks/useReveal";
 import { WHATSAPP_LINK, BRAND } from "@/constants/site";
 
-export function About() {
+interface SectionProps {
+  /** Si se indica, muestra un CTA "Ver más" hacia la subpágina (solo en Home). */
+  detailTo?: string;
+}
+
+export function About({ detailTo }: SectionProps = {}) {
   return (
     <section id="nosotros" className="relative scroll-mt-24 border-y border-white/[0.05] bg-ink-soft/60 py-24 sm:py-32">
       <GlowBackground position="center" />
@@ -30,11 +35,17 @@ export function About() {
               que tu empresa opere con la potencia de una compañía tecnológica de primer nivel.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="mt-9">
+            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
               <Button href={WHATSAPP_LINK} external size="lg">
                 <WhatsAppIcon className="h-[18px] w-[18px]" />
                 Hablemos de tu proyecto
               </Button>
+              {detailTo && (
+                <Button to={detailTo} variant="secondary" size="lg">
+                  Conócenos más
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              )}
             </motion.div>
           </motion.div>
 

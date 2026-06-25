@@ -9,59 +9,109 @@
     <title>NUCLOUD · Automatización con IA para empresas | Ecuador</title>
     <meta
       name="description"
-      content="Agentes de IA, automatización con n8n y desarrollo web para empresas en Ecuador. Consultoría inicial gratuita y respuesta en menos de 24 h."
+      content="Agentes de IA, automatización con n8n e integraciones para empresas en Ecuador y Latinoamérica. Consultoría inicial gratuita y respuesta en menos de 24 h."
     />
     <meta name="robots" content="index,follow,max-image-preview:large" />
-    <link rel="canonical" href="https://nucloudai.cloud/" />
+    <link rel="canonical" href="https://nucloudai.com/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="NUCLOUD" />
     <meta property="og:locale" content="es_EC" />
-    <meta property="og:url" content="https://nucloudai.cloud/" />
+    <meta property="og:url" content="https://nucloudai.com/" />
     <meta property="og:title" content="NUCLOUD — Automatiza tu Negocio con Inteligencia Artificial" />
     <meta
       property="og:description"
       content="Sistemas inteligentes que optimizan procesos y hacen crecer tu empresa. IA, automatización con n8n, integraciones API e infraestructura cloud."
     />
-    <meta property="og:image" content="https://nucloudai.cloud/nucloud-full.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="https://nucloudai.com/nucloud-full.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1162" />
+    <meta property="og:image:height" content="1162" />
     <meta property="og:image:alt" content="NUCLOUD — Automatización con IA" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="NUCLOUD — Automatiza tu Negocio con IA" />
     <meta name="twitter:description" content="Agentes de IA, automatización con n8n y desarrollo web para empresas en Ecuador." />
-    <meta name="twitter:image" content="https://nucloudai.cloud/nucloud-full.png" />
+    <meta name="twitter:image" content="https://nucloudai.com/nucloud-full.png" />
+    <meta name="twitter:image:alt" content="NUCLOUD — Automatización con IA" />
 
-    <!-- Fonts: Clash Display + Satoshi (Fontshare) -->
+    <!-- Fonts: Clash Display + Satoshi (Fontshare) — carga no bloqueante -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
     <!-- JetBrains Mono for system/tech labels -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+      />
+    </noscript>
 
-    <!-- Structured Data: Organization + LocalBusiness + WebSite -->
+    <!-- Structured Data: Organization + ProfessionalService + WebSite -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "ImageObject",
+          "@id": "https://nucloudai.com/#logo",
+          "url": "https://nucloudai.com/nucloud-logo.png",
+          "contentUrl": "https://nucloudai.com/nucloud-logo.png",
+          "width": 559,
+          "height": 559,
+          "caption": "NUCLOUD — logotipo"
+        },
+        {
+          "@type": "ImageObject",
+          "@id": "https://nucloudai.com/#og-image",
+          "url": "https://nucloudai.com/nucloud-full.png",
+          "contentUrl": "https://nucloudai.com/nucloud-full.png",
+          "width": 1162,
+          "height": 1162,
+          "caption": "NUCLOUD — automatización con IA para empresas en Ecuador"
+        },
+        {
           "@type": "Organization",
-          "@id": "https://nucloudai.cloud/#organization",
+          "@id": "https://nucloudai.com/#organization",
           "name": "NUCLOUD",
-          "url": "https://nucloudai.cloud/",
-          "logo": "https://nucloudai.cloud/nucloud-logo.png",
-          "image": "https://nucloudai.cloud/nucloud-full.png",
+          "url": "https://nucloudai.com/",
+          "logo": { "@id": "https://nucloudai.com/#logo" },
+          "image": { "@id": "https://nucloudai.com/#og-image" },
+          "email": "nucloudai@gmail.com",
           "description": "Automatización con IA, agentes inteligentes, desarrollo web e infraestructura cloud para empresas.",
+          "knowsAbout": [
+            "Inteligencia Artificial",
+            "Automatización empresarial",
+            "Automatización con n8n",
+            "Desarrollo web",
+            "Infraestructura cloud",
+            "Integración de APIs",
+            "Agentes conversacionales"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Cuenca",
+            "addressRegion": "Azuay",
+            "addressCountry": "EC"
+          },
           "sameAs": [
             "https://www.instagram.com/nucloud_ai.ec/",
             "https://www.facebook.com/profile.php?id=61590267341001"
@@ -69,19 +119,25 @@
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+593-96-332-2355",
+            "email": "nucloudai@gmail.com",
             "contactType": "sales",
             "areaServed": "EC",
             "availableLanguage": ["es"]
           }
         },
         {
-          "@type": "LocalBusiness",
-          "@id": "https://nucloudai.cloud/#localbusiness",
+          "@type": "ProfessionalService",
+          "@id": "https://nucloudai.com/#localbusiness",
           "name": "NUCLOUD",
-          "url": "https://nucloudai.cloud/",
-          "image": "https://nucloudai.cloud/nucloud-full.png",
+          "url": "https://nucloudai.com/",
+          "image": { "@id": "https://nucloudai.com/#og-image" },
+          "logo": { "@id": "https://nucloudai.com/#logo" },
           "telephone": "+593-96-332-2355",
+          "email": "nucloudai@gmail.com",
           "priceRange": "$$",
+          "currenciesAccepted": "USD",
+          "description": "Agencia de automatización con IA, agentes inteligentes, desarrollo web e infraestructura cloud para empresas en Ecuador y Latinoamérica.",
+          "parentOrganization": { "@id": "https://nucloudai.com/#organization" },
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Cuenca",
@@ -89,16 +145,92 @@
             "addressCountry": "EC"
           },
           "areaServed": [
-            { "@type": "Country", "name": "Ecuador" }
+            { "@type": "Country", "name": "Ecuador" },
+            { "@type": "AdministrativeArea", "name": "Latinoamérica" }
+          ],
+          "knowsAbout": [
+            "Inteligencia Artificial",
+            "Automatización con n8n",
+            "Desarrollo web",
+            "Infraestructura cloud",
+            "Integración de APIs",
+            "Agentes conversacionales"
+          ],
+          "sameAs": [
+            "https://www.instagram.com/nucloud_ai.ec/",
+            "https://www.facebook.com/profile.php?id=61590267341001"
           ]
         },
         {
           "@type": "WebSite",
-          "@id": "https://nucloudai.cloud/#website",
-          "url": "https://nucloudai.cloud/",
+          "@id": "https://nucloudai.com/#website",
+          "url": "https://nucloudai.com/",
           "name": "NUCLOUD",
+          "description": "Automatización con IA para empresas en Ecuador y Latinoamérica.",
           "inLanguage": "es-EC",
-          "publisher": { "@id": "https://nucloudai.cloud/#organization" }
+          "dateModified": "2026-06-24",
+          "publisher": { "@id": "https://nucloudai.com/#organization" }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage (coincide con las preguntas visibles en #root) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": "https://nucloudai.com/#faqpage",
+      "url": "https://nucloudai.com/#faq",
+      "isPartOf": { "@id": "https://nucloudai.com/#website" },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es la automatización con IA y cómo ayuda a mi empresa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La automatización con IA usa agentes inteligentes y modelos de lenguaje para ejecutar tareas repetitivas sin intervención humana: atender clientes, calificar leads, generar reportes o gestionar pedidos. En NUCLOUD diseñamos sistemas a medida que reducen el trabajo manual hasta un 80% y operan 24/7."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta implementar un agente de IA o una automatización?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El coste depende del alcance: un chatbot básico parte desde un proyecto puntual, mientras que un sistema integrado con CRM, WhatsApp y bases de datos requiere más trabajo. Ofrecemos una consultoría inicial gratuita y propuesta a medida en menos de 24 horas, sin compromiso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo integran n8n con los sistemas que ya usa mi empresa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "n8n es una plataforma de automatización que conecta APIs, bases de datos y modelos de IA mediante workflows visuales. La usamos para orquestar procesos completos: capturar datos de WhatsApp o Instagram, procesarlos con IA, guardarlos en PostgreSQL y notificar a tu equipo, todo en tiempo real."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué países opera NUCLOUD?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "NUCLOUD tiene sede en Cuenca, Ecuador, y trabaja con empresas en todo el país y en Latinoamérica de forma remota. Atendemos clientes en español, con respuesta en menos de 24 horas en días laborables y soporte continuo durante la implementación."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tarda en estar listo un sistema con IA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una automatización sencilla puede estar operativa en una o dos semanas. Sistemas más complejos —agentes conversacionales con memoria, integraciones con CRM o ERP, infraestructura cloud— suelen entregarse entre cuatro y ocho semanas, divididos en fases con entregas funcionales desde el inicio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Mis datos están seguros con la automatización con IA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Desplegamos en infraestructura cloud cifrada, separamos credenciales y datos sensibles, y respetamos la política de privacidad acordada con cada cliente. Tus datos se usan únicamente para los flujos definidos contigo y nunca se comparten con terceros sin autorización expresa."
+          }
         }
       ]
     }
@@ -114,7 +246,7 @@
       -->
       <header style="padding:2rem 1.25rem;color:#fff;font-family:system-ui,sans-serif">
         <p style="font-size:.85rem;text-transform:uppercase;letter-spacing:.18em;color:#FF8C1A">NUCLOUD · Ecuador</p>
-        <h1 style="font-size:2.25rem;font-weight:600;margin:.75rem 0;line-height:1.1">Automatización con Inteligencia Artificial para empresas que crecen</h1>
+        <h1 style="font-size:2.25rem;font-weight:600;margin:.75rem 0;line-height:1.1">Automatiza tu negocio con Inteligencia Artificial</h1>
         <p style="font-size:1.05rem;color:#A1A1AA;max-width:42rem;line-height:1.6">
           NUCLOUD diseña sistemas inteligentes que automatizan procesos, mejoran la atención al cliente y escalan tu operación. Agentes de IA, automatización con n8n, desarrollo web e infraestructura cloud, hechos a medida para empresas en Ecuador y Latinoamérica.
         </p>

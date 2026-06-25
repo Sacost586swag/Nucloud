@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Plus } from "lucide-react";
+import { Plus, ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlowBackground } from "@/components/ui/GlowBackground";
+import { Button } from "@/components/ui/Button";
 import { FAQS } from "@/constants/content";
 import { fadeUp, stagger, viewportOnce } from "@/hooks/useReveal";
 import { cn } from "@/utils/cn";
 
-export function FAQ() {
+interface SectionProps {
+  /** Si se indica, muestra un CTA "Ver más" hacia la subpágina (solo en Home). */
+  detailTo?: string;
+}
+
+export function FAQ({ detailTo }: SectionProps = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -70,6 +76,15 @@ export function FAQ() {
             );
           })}
         </motion.ul>
+
+        {detailTo && (
+          <div className="mt-12 flex justify-center">
+            <Button to={detailTo} variant="secondary" size="lg">
+              Ver todas las preguntas
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

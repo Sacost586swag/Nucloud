@@ -1,8 +1,22 @@
+import { Link } from "react-router-dom";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { NAV_LINKS, WHATSAPP_LINK, PRIVACY_POLICY_URL, BRAND } from "@/constants/site";
+import {
+  NAV_LINKS,
+  WHATSAPP_LINK,
+  INSTAGRAM_URL,
+  EMAIL_LINK,
+  CONTACT_EMAIL,
+  PRIVACY_POLICY_URL,
+  BRAND,
+  SITE_LAST_UPDATED,
+} from "@/constants/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const lastUpdated = new Date(SITE_LAST_UPDATED).toLocaleDateString("es", {
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <footer className="relative border-t border-white/[0.06] py-14">
@@ -10,28 +24,42 @@ export function Footer() {
         <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start sm:justify-between">
           {/* Marca */}
           <div className="flex flex-col items-center gap-4 sm:items-start">
-            <a href="#top" className="flex items-center gap-2.5" aria-label="NUCLOUD — inicio">
-              <img src={BRAND.logo} alt="" className="h-9 w-9 object-contain" />
+            <Link to="/" className="flex items-center gap-2.5" aria-label="NUCLOUD — inicio">
+              <img src={BRAND.logo} alt="" width={36} height={36} className="h-9 w-9 object-contain" />
               <span className="font-display text-xl font-semibold tracking-tight text-fog">
                 NU<span className="text-flame">CLOUD</span>
               </span>
-            </a>
+            </Link>
             <p className="max-w-xs text-center text-sm text-fog-muted sm:text-left">
               {BRAND.tagline}
             </p>
+            <a
+              href={EMAIL_LINK}
+              className="text-sm text-fog-muted underline-offset-4 transition-colors hover:text-fog hover:underline"
+            >
+              {CONTACT_EMAIL}
+            </a>
           </div>
 
           {/* Navegación */}
           <nav className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
             {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+              <Link
+                key={link.to}
+                to={link.to}
                 className="text-sm text-fog-muted transition-colors hover:text-fog"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-fog-muted transition-colors hover:text-fog"
+            >
+              Instagram
+            </a>
             <a
               href={WHATSAPP_LINK}
               target="_blank"
@@ -47,7 +75,8 @@ export function Footer() {
         {/* Barra inferior */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-7 sm:flex-row">
           <p className="font-mono text-xs text-fog-muted">
-            © {year} {BRAND.name}. Todos los derechos reservados.
+            © {year} {BRAND.name}. Todos los derechos reservados.{" "}
+            <time dateTime={SITE_LAST_UPDATED}>· Actualizado: {lastUpdated}</time>
           </p>
           <a
             href={PRIVACY_POLICY_URL}

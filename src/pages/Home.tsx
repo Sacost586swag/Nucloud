@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { TechMarquee } from "@/components/sections/TechMarquee";
 import { Services } from "@/components/sections/Services";
@@ -8,27 +7,26 @@ import { About } from "@/components/sections/About";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
-import { Footer } from "@/components/sections/Footer";
-import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
-/** Página única que compone todas las secciones de la web de NUCLOUD. */
+/** Página principal: compone las secciones como vista general. El chrome
+ *  (Navbar, Footer, drawer, WhatsApp) vive en Layout. */
 export function Home() {
+  useDocumentTitle(
+    "NUCLOUD — Automatización con IA, desarrollo y cloud para empresas"
+  );
+
   return (
-    <div className="grain relative min-h-screen bg-ink">
-      <Navbar />
-      <main>
-        <Hero />
-        <TechMarquee />
-        <Services />
-        <Process />
-        <Benefits />
-        <About />
-        <FAQ />
-        <FinalCTA />
-        <Contact />
-      </main>
-      <Footer />
-      <FloatingWhatsApp />
-    </div>
+    <>
+      <Hero />
+      <TechMarquee />
+      <Services detailTo="/servicios" />
+      <Process detailTo="/proceso" />
+      <Benefits detailTo="/beneficios" />
+      <About detailTo="/nosotros" />
+      <FAQ detailTo="/faq" />
+      <FinalCTA />
+      <Contact />
+    </>
   );
 }

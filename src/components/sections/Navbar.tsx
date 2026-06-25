@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Link, NavLink } from "react-router-dom";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { NAV_LINKS, WHATSAPP_LINK, BRAND } from "@/constants/site";
 import { cn } from "@/utils/cn";
 
-export function Navbar() {
+interface NavbarProps {
+  /** Abre el menú lateral (drawer). Lo gestiona Layout. */
+  onMenuClick?: () => void;
+}
+
+export function Navbar({ onMenuClick }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -33,29 +38,44 @@ export function Navbar() {
               : "border border-transparent bg-transparent"
           )}
         >
-          {/* Marca */}
-          <a href="#top" className="flex items-center gap-2.5" aria-label="NUCLOUD — inicio">
-            <img src={BRAND.logo} alt="" className="h-8 w-8 object-contain" />
-            <span className="font-display text-lg font-semibold tracking-tight text-fog">
-              NU<span className="text-flame">CLOUD</span>
-            </span>
-          </a>
+          {/* Marca + disparador del menú lateral */}
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={onMenuClick}
+              className="grid h-10 w-10 place-items-center rounded-full text-fog transition-colors hover:bg-white/[0.05]"
+              aria-label="Abrir menú de navegación"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+            <Link to="/" className="flex items-center gap-2.5" aria-label="NUCLOUD — inicio">
+              <img src={BRAND.logo} alt="" width={32} height={32} className="h-8 w-8 object-contain" />
+              <span className="font-display text-lg font-semibold tracking-tight text-fog">
+                NU<span className="text-flame">CLOUD</span>
+              </span>
+            </Link>
+          </div>
 
           {/* Enlaces escritorio */}
           <ul className="hidden items-center gap-1 lg:flex">
             {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="rounded-full px-4 py-2 text-sm text-fog-muted transition-colors hover:text-fog"
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  className={({ isActive }) =>
+                    cn(
+                      "rounded-full px-4 py-2 text-sm transition-colors",
+                      isActive ? "text-flame" : "text-fog-muted hover:text-fog"
+                    )
+                  }
                 >
                   {link.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
 
-          {/* CTA + menú móvil */}
+          {/* CTA */}
           <div className="flex items-center gap-2">
             <Button
               href={WHATSAPP_LINK}
@@ -67,54 +87,9 @@ export function Navbar() {
               <WhatsAppIcon className="h-4 w-4" />
               WhatsApp
             </Button>
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              className="grid h-10 w-10 place-items-center rounded-full text-fog hairline bg-white/[0.03] lg:hidden"
-              aria-label={open ? "Cerrar menú" : "Abrir menú"}
-              aria-expanded={open}
-            >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
           </div>
         </nav>
       </div>
-
-      {/* Menú móvil */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-            className="container-x lg:hidden"
-          >
-            <div className="glass mt-2 flex flex-col gap-1 rounded-3xl p-3">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-[15px] text-fog-muted transition-colors hover:bg-white/[0.04] hover:text-fog"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <Button
-                href={WHATSAPP_LINK}
-                external
-                size="md"
-                className="mt-1 w-full"
-                onClick={() => setOpen(false)}
-              >
-                <WhatsAppIcon className="h-4 w-4" />
-                Contactar por WhatsApp
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.header>
   );
 }

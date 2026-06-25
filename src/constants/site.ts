@@ -24,6 +24,13 @@ export const CONTACT_WEBHOOK_URL =
 export const PRIVACY_POLICY_URL =
   "https://docs.google.com/document/d/e/2PACX-1vQaj5a8hESVUWImPBvmY-jElDw8EF1NW9qWMppZvrKTq1YAtJWvl_Q4o5bQi9YleoQ75NJAO6vwX1Ii/pub";
 
+/** Perfil de Instagram de NUCLOUD. */
+export const INSTAGRAM_URL = "https://www.instagram.com/nucloud_ai.ec/";
+
+/** Correo de contacto y su enlace mailto. */
+export const CONTACT_EMAIL = "nucloudai@gmail.com";
+export const EMAIL_LINK = `mailto:${CONTACT_EMAIL}`;
+
 export const BRAND = {
   name: "NUCLOUD",
   tagline: "Sistemas inteligentes para empresas que crecen.",
@@ -31,11 +38,23 @@ export const BRAND = {
   wordmark: "/nucloud-wordmark.png",
 } as const;
 
+/**
+ * Fecha de última actualización de contenido (ISO, YYYY-MM-DD).
+ * Actualízala al publicar cambios de contenido para mantener la señal de
+ * frescura coherente con sitemap.xml y el dateModified del JSON-LD.
+ */
+export const SITE_LAST_UPDATED = "2026-06-24";
+
+/**
+ * Enlaces de navegación. Cada item apunta a su subpágina dedicada
+ * (rutas de React Router). El logo y las secciones de la Home conservan
+ * sus `id` para anclas internas donde haga falta.
+ */
 export const NAV_LINKS = [
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proceso", href: "#proceso" },
-  { label: "Beneficios", href: "#beneficios" },
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Servicios", to: "/servicios" },
+  { label: "Proceso", to: "/proceso" },
+  { label: "Beneficios", to: "/beneficios" },
+  { label: "Nosotros", to: "/nosotros" },
+  { label: "FAQ", to: "/faq" },
+  { label: "Contacto", to: "/contacto" },
 ] as const;

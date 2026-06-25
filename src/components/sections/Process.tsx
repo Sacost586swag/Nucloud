@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Instagram, Webhook, BrainCircuit, Database, LayoutDashboard, ChevronDown } from "lucide-react";
+import { Instagram, Webhook, BrainCircuit, Database, LayoutDashboard, ChevronDown, ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Button } from "@/components/ui/Button";
 import { PROCESS_STEPS } from "@/constants/content";
 import { fadeUp, stagger, viewportOnce } from "@/hooks/useReveal";
 
@@ -12,7 +13,12 @@ const FLOW = [
   { icon: LayoutDashboard, label: "Dashboard SaaS", sub: "Control y métricas" },
 ];
 
-export function Process() {
+interface SectionProps {
+  /** Si se indica, muestra un CTA "Ver más" hacia la subpágina (solo en Home). */
+  detailTo?: string;
+}
+
+export function Process({ detailTo }: SectionProps = {}) {
   return (
     <section id="proceso" className="relative scroll-mt-24 border-y border-white/[0.05] bg-ink-soft/60 py-24 sm:py-32">
       <div className="container-x">
@@ -104,6 +110,15 @@ export function Process() {
             })}
           </motion.div>
         </div>
+
+        {detailTo && (
+          <div className="mt-14 flex justify-center">
+            <Button to={detailTo} variant="secondary" size="lg">
+              Ver el proceso completo
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

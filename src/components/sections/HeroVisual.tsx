@@ -46,11 +46,12 @@ export function HeroVisual() {
           <video
             className="h-full w-full object-cover"
             src="/nucloud-neon.mp4"
+            poster="/nucloud-logo.png"
             autoPlay
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-label="Animación del logo neón de NUCLOUD"
           />
           {/* Viñeta sutil para fundir el vídeo con el marco */}

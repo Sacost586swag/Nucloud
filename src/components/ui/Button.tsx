@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { cn } from "@/utils/cn";
 
 type Variant = "primary" | "secondary" | "ghost";
@@ -6,7 +7,10 @@ type Size = "md" | "lg";
 
 interface ButtonProps {
   children: ReactNode;
+  /** URL externa o ancla (renderiza <a>). Usa `external` para abrir en pestaña nueva. */
   href?: string;
+  /** Ruta interna de React Router (renderiza <Link>, navegación cliente). */
+  to?: string;
   onClick?: () => void;
   variant?: Variant;
   size?: Size;
@@ -38,6 +42,7 @@ const variants: Record<Variant, string> = {
 export function Button({
   children,
   href,
+  to,
   onClick,
   variant = "primary",
   size = "lg",
@@ -62,6 +67,15 @@ export function Button({
       <span className="relative inline-flex items-center gap-2">{children}</span>
     </>
   );
+
+  // Navegación interna cliente (sin recarga completa).
+  if (to && !external) {
+    return (
+      <Link to={to} onClick={onClick} className={classes} {...rest}>
+        {content}
+      </Link>
+    );
+  }
 
   if (href) {
     return (
