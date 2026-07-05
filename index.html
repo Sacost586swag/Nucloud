@@ -37,33 +37,22 @@
     <meta name="twitter:image" content="https://nucloudai.com/nucloud-full.png" />
     <meta name="twitter:image:alt" content="NUCLOUD — Automatización con IA" />
 
-    <!-- Fonts: Clash Display + Satoshi (Fontshare) — carga no bloqueante -->
+    <!-- Fonts: Clash Display + Satoshi (Fontshare). Enlaces directos (no el
+         patrón preload+onload=""): la Content-Security-Policy de nginx.conf
+         bloquea atributos de evento inline, y font-display=swap en el CSS
+         servido por Fontshare/Google ya evita texto invisible mientras carga. -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link
-      rel="preload"
-      as="style"
+      rel="stylesheet"
       href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
     />
     <!-- JetBrains Mono for system/tech labels -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      as="style"
+      rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
     />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap"
-      />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
-      />
-    </noscript>
 
     <!-- Structured Data: Organization + ProfessionalService + WebSite -->
     <script type="application/ld+json">
