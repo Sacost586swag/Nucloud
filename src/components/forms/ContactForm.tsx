@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import {
   AlertCircle,
@@ -51,6 +51,14 @@ type Status = "idle" | "sending" | "success" | "error";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/**
+ * Mitigación anti-bot básica en cliente (hallazgo 1, SECURITY_AUDIT.md).
+ * No sustituye un CAPTCHA/rate-limit en el borde: el webhook sigue siendo
+ * público y puede invocarse directamente sin pasar por este formulario.
+ * Solo reduce el ruido de bots simples que sí renderizan y envían el form.
+ */
+const MIN_SUBMIT_MS = 1200;
+
 /** Valida un único campo y devuelve el mensaje de error (o undefined). */
 function validateField(name: keyof FormState, value: string): string | undefined {
   const v = value.trim();
@@ -94,6 +102,11 @@ export function ContactForm() {
   const [acepta, setAcepta] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
+  // Señuelo invisible para humanos: solo un bot que rellena todos los
+  // campos del DOM lo completa. Fuera de FormState para no interferir
+  // con la validación de los campos reales.
+  const [honeypot, setHoneypot] = useState("");
+  const mountedAtRef = useRef(Date.now());
 
   const update = (name: keyof FormState) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -130,6 +143,16 @@ export function ContactForm() {
     e.preventDefault();
     if (status === "sending") return;
 
+    if (honeypot.trim() !== "") {
+      // Un humano nunca ve ni rellena este campo. Aparentamos éxito sin
+      // enviar nada, para no revelar la trampa al script que la rellenó.
+      setStatus("success");
+      setForm(EMPTY);
+      setAcepta(false);
+      setErrors({});
+      return;
+    }
+
     const { ok, firstInvalid } = validateAll();
     if (!ok) {
       if (firstInvalid) document.getElementById(`f-${firstInvalid}`)?.focus();
@@ -137,6 +160,15 @@ export function ContactForm() {
     }
 
     setStatus("sending");
+
+    // Relleno+envío implausiblemente rápido (típico de un script, no de una
+    // persona completando 5 campos + checkbox). No rechazamos el envío —
+    // podría ser un usuario real con autocompletado— solo absorbemos la
+    // diferencia antes de enviar, para no premiar los reintentos rápidos.
+    const elapsed = Date.now() - mountedAtRef.current;
+    if (elapsed < MIN_SUBMIT_MS) {
+      await new Promise((resolve) => setTimeout(resolve, MIN_SUBMIT_MS - elapsed));
+    }
 
     const payload = {
       ...form,
@@ -200,6 +232,25 @@ export function ContactForm() {
         <SuccessPanel onReset={() => setStatus("idle")} />
       ) : (
         <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-5">
+          {/* Señuelo anti-bot: invisible y no navegable para personas
+              (aria-hidden, tabIndex=-1, fuera de pantalla). Ver MIN_SUBMIT_MS
+              arriba y SECURITY_AUDIT.md, hallazgo 1. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden"
+          >
+            <label htmlFor="f-website">No completar este campo</label>
+            <input
+              id="f-website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+          </div>
+
           <div className="grid gap-5 sm:grid-cols-2">
             <Field
               name="nombre"
