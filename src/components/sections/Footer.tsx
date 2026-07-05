@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Wordmark } from "@/components/ui/Wordmark";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import {
   NAV_LINKS,
@@ -26,9 +27,7 @@ export function Footer() {
           <div className="flex flex-col items-center gap-4 sm:items-start">
             <Link to="/" className="flex items-center gap-2.5" aria-label="NUCLOUD — inicio">
               <img src={BRAND.logo} alt="" width={36} height={36} className="h-9 w-9 object-contain" />
-              <span className="font-display text-xl font-semibold tracking-tight text-fog">
-                NU<span className="text-flame">CLOUD</span>
-              </span>
+              <Wordmark className="text-xl" />
             </Link>
             <p className="max-w-xs text-center text-sm text-fog-muted sm:text-left">
               {BRAND.tagline}

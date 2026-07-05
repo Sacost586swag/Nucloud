@@ -19,3 +19,4 @@ vite.config.d.ts
 
 # Source assets (not needed for build)
 Assets Nucloud/
+src/assets/

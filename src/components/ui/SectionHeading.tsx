@@ -33,7 +33,7 @@ export function SectionHeading({
       <span className="eyebrow">{eyebrow}</span>
       <h2
         className={cn(
-          "font-display text-4xl font-semibold leading-[1.05] tracking-tightest text-fog sm:text-5xl lg:text-[3.4rem]",
+          "font-display text-display-lg font-semibold text-fog",
           align === "center" ? "max-w-3xl text-balance" : "max-w-2xl"
         )}
       >

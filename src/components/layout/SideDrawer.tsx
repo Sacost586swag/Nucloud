@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { ArrowUpRight, Instagram, Mail, X } from "lucide-react";
+import { Wordmark } from "@/components/ui/Wordmark";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import {
   NAV_LINKS,
@@ -89,9 +90,7 @@ export function SideDrawer({ open, onClose }: SideDrawerProps) {
             <div className="flex items-center justify-between">
               <NavLink to="/" onClick={onClose} className="flex items-center gap-2.5">
                 <img src={BRAND.logo} alt="" width={32} height={32} className="h-8 w-8 object-contain" />
-                <span className="font-display text-lg font-semibold tracking-tight text-fog">
-                  NU<span className="text-flame">CLOUD</span>
-                </span>
+                <Wordmark className="text-lg" />
               </NavLink>
               <button
                 type="button"

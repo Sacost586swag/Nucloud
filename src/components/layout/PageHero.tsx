@@ -33,7 +33,7 @@ export function PageHero({ eyebrow, title, description, children }: PageHeroProp
           </motion.span>
           <motion.h1
             variants={fadeUp}
-            className="font-display text-4xl font-semibold leading-[1.04] tracking-tightest text-fog sm:text-5xl lg:text-[3.6rem]"
+            className="font-display text-display-lg font-semibold text-balance text-fog"
           >
             {title}
           </motion.h1>

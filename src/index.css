@@ -21,6 +21,22 @@
     @apply bg-ink text-fog font-sans antialiased;
     background-color: #050505;
     overflow-x: hidden;
+    /* Texto claro sobre fondo oscuro: más interlineado y un pelín de tracking
+       para compensar el peso percibido menor (guía impeccable). */
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    font-kerning: normal;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  /* Titulares: reparto de líneas parejo. Prosa: menos huérfanas. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 
   /* Respeta usuarios que prefieren menos movimiento */
@@ -72,11 +88,6 @@
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
   }
 
-  /* Texto con degradado de marca */
-  .text-flame {
-    @apply bg-flame-gradient bg-clip-text text-transparent;
-  }
-
   /* Borde sutil tipo "hairline" */
   .hairline {
     @apply border border-white/[0.08];
@@ -100,6 +111,19 @@
   }
   .text-pretty {
     text-wrap: pretty;
+  }
+
+  /* Titular en contorno (hueco): usado en la primera línea del hero para
+     dar jerarquía frente a las líneas siguientes en naranja sólido. */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: clamp(1px, 0.15vw + 0.5px, 1.8px) rgba(255, 255, 255, 0.75);
+    filter: drop-shadow(0 6px 28px rgba(0, 0, 0, 0.5));
+  }
+  @supports not (-webkit-text-stroke: 1px black) {
+    .text-outline {
+      color: rgba(255, 255, 255, 0.85);
+    }
   }
 
   /* Grano sutil sobre el fondo */

@@ -20,9 +20,27 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Clash Display"', "sans-serif"],
-        sans: ['"Satoshi"', "system-ui", "sans-serif"],
-        mono: ['"JetBrains Mono"', "monospace"],
+        // Cabinet Grotesk: display arquitectónico/premium para titulares.
+        display: ['"Cabinet Grotesk"', "system-ui", "sans-serif"],
+        // Switzer: grotesca de texto neutra y muy legible para cuerpo/UI.
+        sans: ['"Switzer"', "system-ui", "-apple-system", '"Segoe UI"', "sans-serif"],
+        // JetBrains Mono: solo labels técnicos (la marca ES técnica, no disfraz).
+        mono: ['"JetBrains Mono"', "ui-monospace", "SFMono-Regular", "monospace"],
+      },
+      fontSize: {
+        // Escala display fluida (clamp), techo ≤ 6rem y tracking ≥ -0.04em.
+        "display-hero": [
+          "clamp(2.75rem, 7vw + 1rem, 6rem)",
+          { lineHeight: "0.94", letterSpacing: "-0.02em" },
+        ],
+        "display-lg": [
+          "clamp(2.05rem, 3.4vw + 0.8rem, 3.5rem)",
+          { lineHeight: "1.05", letterSpacing: "-0.03em" },
+        ],
+        "display-md": [
+          "clamp(1.75rem, 2.2vw + 0.9rem, 2.6rem)",
+          { lineHeight: "1.1", letterSpacing: "-0.02em" },
+        ],
       },
       letterSpacing: {
         tightest: "-0.04em",

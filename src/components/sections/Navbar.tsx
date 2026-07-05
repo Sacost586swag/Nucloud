@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { Wordmark } from "@/components/ui/Wordmark";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { NAV_LINKS, WHATSAPP_LINK, BRAND } from "@/constants/site";
 import { cn } from "@/utils/cn";
@@ -50,9 +51,7 @@ export function Navbar({ onMenuClick }: NavbarProps) {
             </button>
             <Link to="/" className="flex items-center gap-2.5" aria-label="NUCLOUD — inicio">
               <img src={BRAND.logo} alt="" width={32} height={32} className="h-8 w-8 object-contain" />
-              <span className="font-display text-lg font-semibold tracking-tight text-fog">
-                NU<span className="text-flame">CLOUD</span>
-              </span>
+              <Wordmark className="text-lg" />
             </Link>
           </div>
 
