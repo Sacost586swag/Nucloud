@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/utils/cn";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "ghost" | "whatsapp";
 type Size = "md" | "lg";
 
 interface ButtonProps {
@@ -16,6 +16,8 @@ interface ButtonProps {
   size?: Size;
   external?: boolean;
   className?: string;
+  /** Solo aplica al botón nativo (sin `href`/`to`). */
+  disabled?: boolean;
   "aria-label"?: string;
 }
 
@@ -33,6 +35,10 @@ const variants: Record<Variant, string> = {
   secondary:
     "text-fog hairline bg-white/[0.02] backdrop-blur-md hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-0.5",
   ghost: "text-fog-muted hover:text-fog",
+  // Excepción puntual de marca: verde de WhatsApp, reservado para el CTA de
+  // conexión en /embedded-whatsapp (reconocible para el flujo de Meta).
+  whatsapp:
+    "bg-gradient-to-br from-[#25D366] to-[#1DA851] text-white font-semibold shadow-[0_8px_30px_-8px_rgba(37,211,102,0.55)] hover:shadow-[0_12px_44px_-8px_rgba(37,211,102,0.7)] hover:-translate-y-0.5 active:translate-y-0",
 };
 
 /**
@@ -52,9 +58,9 @@ export function Button({
 }: ButtonProps) {
   const classes = cn(base, "overflow-hidden", sizes[size], variants[variant], className);
 
-  // Barrido de luz (shimmer) en hover, solo para la acción primaria.
+  // Barrido de luz (shimmer) en hover, para las acciones destacadas.
   const shimmer =
-    variant === "primary" ? (
+    variant === "primary" || variant === "whatsapp" ? (
       <span
         aria-hidden
         className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
