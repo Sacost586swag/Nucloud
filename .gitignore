@@ -6,17 +6,35 @@ dist-ssr
 .vite
 *.log
 
-# Agent / Claude tooling
+# Agente / Claude / herramientas de desarrollo (no forman parte del sitio)
 .agents/
 .claude/
 .remember/
+.impeccable/
+.specify/
+specs/
+.mcp.json
 skills-lock.json
+
+# Documentos de referencia y de negocio (solo en local, no se versionan)
+*.docx
+CodigoSDK_Meta
+NUCLOUD_BUILD_PROMPT.md
+Assets Nucloud/
+
+# Scripts sueltos y otros gestores de paquetes (el proyecto usa npm)
+click_date.mjs
+pnpm-lock.yaml
+pnpm-workspace.yaml
+yarn.lock
 
 # Build artifacts / caches (no deben versionarse)
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
 
-# Source assets (not needed for build)
-Assets Nucloud/
-src/assets/
+# src/assets/: solo se versiona tech/ (el build importa esos logos desde
+# techStack.ts; ignorarlo rompería el build de Dokploy). Lo demás son
+# archivos fuente sueltos que el build no usa.
+src/assets/*
+!src/assets/tech/

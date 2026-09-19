@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { Wordmark } from "@/components/ui/Wordmark";
+import { BrandMark } from "@/components/brand/BrandMark";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { NAV_LINKS, WHATSAPP_LINK, BRAND } from "@/constants/site";
+import { WhatsAppCTA } from "@/components/whatsapp/WhatsAppCTA";
+import { NAV_LINKS } from "@/constants/site";
 import { cn } from "@/utils/cn";
+import { gsap, useGSAP, MQ } from "@/lib/gsap";
 
 interface NavbarProps {
   /** Abre el menú lateral (drawer). Lo gestiona Layout. */
@@ -15,6 +15,7 @@ interface NavbarProps {
 
 export function Navbar({ onMenuClick }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -23,13 +24,19 @@ export function Navbar({ onMenuClick }: NavbarProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(MQ.motion, () => {
+        gsap.from(headerRef.current, { y: -80, autoAlpha: 0, duration: 0.6, ease: "brand" });
+      });
+      return () => mm.revert();
+    },
+    { scope: headerRef }
+  );
+
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-x-0 top-0 z-50"
-    >
+    <header ref={headerRef} className="fixed inset-x-0 top-0 z-50">
       <div className="container-x">
         <nav
           className={cn(
@@ -49,9 +56,8 @@ export function Navbar({ onMenuClick }: NavbarProps) {
             >
               <Menu className="h-5 w-5" />
             </button>
-            <Link to="/" className="flex items-center gap-2.5" aria-label="NUCLOUD — inicio">
-              <img src={BRAND.logo} alt="" width={32} height={32} className="h-8 w-8 object-contain" />
-              <Wordmark className="text-lg" />
+            <Link to="/" aria-label="NUCLOUD — inicio">
+              <BrandMark variant="mark" size={32} />
             </Link>
           </div>
 
@@ -76,19 +82,13 @@ export function Navbar({ onMenuClick }: NavbarProps) {
 
           {/* CTA */}
           <div className="flex items-center gap-2">
-            <Button
-              href={WHATSAPP_LINK}
-              external
-              size="md"
-              className="hidden sm:inline-flex"
-              aria-label="Contactar por WhatsApp"
-            >
+            <WhatsAppCTA size="md" className="hidden sm:inline-flex" aria-label="Contactar por WhatsApp">
               <WhatsAppIcon className="h-4 w-4" />
               WhatsApp
-            </Button>
+            </WhatsAppCTA>
           </div>
         </nav>
       </div>
-    </motion.header>
+    </header>
   );
 }

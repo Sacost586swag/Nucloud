@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
-import { Wordmark } from "@/components/ui/Wordmark";
+import { BrandMark } from "@/components/brand/BrandMark";
+import { MetaTechBadge } from "@/components/brand/MetaTechBadge";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
+import { WhatsAppPicker } from "@/components/whatsapp/WhatsAppPicker";
+import { useWhatsAppPicker } from "@/components/whatsapp/useWhatsAppPicker";
 import {
   NAV_LINKS,
-  WHATSAPP_LINK,
-  INSTAGRAM_URL,
+  SOCIAL_LINKS,
   EMAIL_LINK,
   CONTACT_EMAIL,
   PRIVACY_POLICY_URL,
@@ -18,6 +20,7 @@ export function Footer() {
     month: "long",
     year: "numeric",
   });
+  const { open, toggle, close, rootRef, menuId } = useWhatsAppPicker();
 
   return (
     <footer className="relative border-t border-white/[0.06] py-14">
@@ -25,19 +28,17 @@ export function Footer() {
         <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start sm:justify-between">
           {/* Marca */}
           <div className="flex flex-col items-center gap-4 sm:items-start">
-            <Link to="/" className="flex items-center gap-2.5" aria-label="NUCLOUD — inicio">
-              <img src={BRAND.logo} alt="" width={36} height={36} className="h-9 w-9 object-contain" />
-              <Wordmark className="text-xl" />
+            <Link to="/" aria-label="NUCLOUD — inicio">
+              <BrandMark variant="lockup" size={36} />
             </Link>
-            <p className="max-w-xs text-center text-sm text-fog-muted sm:text-left">
-              {BRAND.tagline}
-            </p>
+            <p className="max-w-xs text-center text-sm text-fog-muted sm:text-left">{BRAND.tagline}</p>
             <a
               href={EMAIL_LINK}
               className="text-sm text-fog-muted underline-offset-4 transition-colors hover:text-fog hover:underline"
             >
               {CONTACT_EMAIL}
             </a>
+            <MetaTechBadge size="medium" />
           </div>
 
           {/* Navegación */}
@@ -52,7 +53,7 @@ export function Footer() {
               </Link>
             ))}
             <a
-              href={INSTAGRAM_URL}
+              href={SOCIAL_LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-fog-muted transition-colors hover:text-fog"
@@ -60,14 +61,47 @@ export function Footer() {
               Instagram
             </a>
             <a
-              href={WHATSAPP_LINK}
+              href={SOCIAL_LINKS.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-flame transition-colors hover:text-flame-glow"
+              className="text-sm text-fog-muted transition-colors hover:text-fog"
             >
-              <WhatsAppIcon className="h-4 w-4" />
-              WhatsApp
+              Facebook
             </a>
+            <a
+              href={SOCIAL_LINKS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-fog-muted transition-colors hover:text-fog"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={SOCIAL_LINKS.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-fog-muted transition-colors hover:text-fog"
+            >
+              TikTok
+            </a>
+            <div ref={rootRef} className="relative">
+              <button
+                type="button"
+                onClick={toggle}
+                aria-haspopup="menu"
+                aria-expanded={open}
+                aria-controls={menuId}
+                className="flex items-center gap-2 text-sm text-flame transition-colors hover:text-flame-glow"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                WhatsApp
+              </button>
+              {open && (
+                <div className="absolute right-0 top-full z-50 pt-2">
+                  <WhatsAppPicker id={menuId} onSelect={close} />
+                </div>
+              )}
+            </div>
           </nav>
         </div>
 

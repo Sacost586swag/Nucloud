@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
 import { GlowBackground } from "@/components/ui/GlowBackground";
-import { fadeUp, stagger } from "@/hooks/useReveal";
+import { useSectionReveal } from "@/motion/useSectionReveal";
 
 interface PageHeroProps {
   eyebrow: string;
@@ -16,41 +15,36 @@ interface PageHeroProps {
  * y reutiliza el lenguaje visual (glow naranja + rejilla + display font).
  */
 export function PageHero({ eyebrow, title, description, children }: PageHeroProps) {
+  const scope = useSectionReveal<HTMLElement>();
+
   return (
-    <section className="relative overflow-hidden pb-16 pt-32 sm:pb-20 sm:pt-40">
+    <section ref={scope} className="relative overflow-hidden pb-16 pt-32 sm:pb-20 sm:pt-40">
       <GlowBackground position="top" intensity="strong" />
       <div aria-hidden className="absolute inset-0 grid-lines opacity-40 mask-fade-b" />
 
       <div className="container-x relative">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="visible"
-          className="flex max-w-3xl flex-col items-start gap-5"
-        >
-          <motion.span variants={fadeUp} className="eyebrow">
+        <div className="flex max-w-3xl flex-col items-start gap-5">
+          <span data-reveal="up" className="eyebrow">
             {eyebrow}
-          </motion.span>
-          <motion.h1
-            variants={fadeUp}
-            className="font-display text-display-lg font-semibold text-balance text-fog"
-          >
-            {title}
-          </motion.h1>
+          </span>
+          {/* Título de página — visible de inmediato, sin animación de
+              entrada (FR-006), igual criterio que el H1 del Hero. */}
+          <h1 className="font-display text-display-lg font-semibold text-balance text-fog">{title}</h1>
           {description && (
-            <motion.p
-              variants={fadeUp}
+            <p
+              data-reveal="up"
+              data-reveal-delay={0.1}
               className="max-w-2xl text-pretty text-lg leading-relaxed text-fog-muted"
             >
               {description}
-            </motion.p>
+            </p>
           )}
           {children && (
-            <motion.div variants={fadeUp} className="mt-4 flex flex-wrap items-center gap-3">
+            <div data-reveal="up" data-reveal-delay={0.2} className="mt-4 flex flex-wrap items-center gap-3">
               {children}
-            </motion.div>
+            </div>
           )}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

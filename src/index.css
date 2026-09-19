@@ -13,13 +13,13 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Sin scroll-behavior:smooth — Lenis controla el smooth-scroll del sitio
+       (motion/SmoothScroll.tsx); los dos juntos producen doble suavizado. */
     scroll-padding-top: 6rem;
   }
 
   body {
     @apply bg-ink text-fog font-sans antialiased;
-    background-color: #050505;
     overflow-x: hidden;
     /* Texto claro sobre fondo oscuro: más interlineado y un pelín de tracking
        para compensar el peso percibido menor (guía impeccable). */
@@ -114,10 +114,12 @@
   }
 
   /* Titular en contorno (hueco): usado en la primera línea del hero para
-     dar jerarquía frente a las líneas siguientes en naranja sólido. */
+     dar jerarquía frente a las líneas siguientes en naranja sólido. El grosor
+     va ~11% por encima del valor base porque el H1 se comprime en X (scale-x-90)
+     y eso adelgaza los trazos verticales del contorno. */
   .text-outline {
     color: transparent;
-    -webkit-text-stroke: clamp(1px, 0.15vw + 0.5px, 1.8px) rgba(255, 255, 255, 0.75);
+    -webkit-text-stroke: clamp(1.1px, 0.17vw + 0.55px, 2px) rgba(255, 255, 255, 0.75);
     filter: drop-shadow(0 6px 28px rgba(0, 0, 0, 0.5));
   }
   @supports not (-webkit-text-stroke: 1px black) {

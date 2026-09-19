@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { forwardRef, type ReactNode, type ButtonHTMLAttributes, type Ref } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/utils/cn";
 
@@ -18,7 +18,12 @@ interface ButtonProps {
   className?: string;
   /** Solo aplica al botón nativo (sin `href`/`to`). */
   disabled?: boolean;
+  /** Solo aplica al botón nativo (sin `href`/`to`); por defecto "button". */
+  type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   "aria-label"?: string;
+  "aria-expanded"?: boolean;
+  "aria-haspopup"?: boolean | "menu" | "listbox" | "tree" | "grid" | "dialog" | "true" | "false";
+  "aria-controls"?: string;
 }
 
 const base =
@@ -44,18 +49,14 @@ const variants: Record<Variant, string> = {
 /**
  * Botón / enlace de marca. Si recibe `href` se renderiza como <a>,
  * en caso contrario como <button>. Una única responsabilidad: la acción primaria.
+ *
+ * `ref` se reenvía al elemento raíz (`<a>`, `<Link>` o `<button>` según el
+ * caso) — lo usa, por ejemplo, WhatsAppPicker para gestionar el foco.
  */
-export function Button({
-  children,
-  href,
-  to,
-  onClick,
-  variant = "primary",
-  size = "lg",
-  external,
-  className,
-  ...rest
-}: ButtonProps) {
+export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(function Button(
+  { children, href, to, onClick, variant = "primary", size = "lg", external, className, type = "button", ...rest },
+  ref
+) {
   const classes = cn(base, "overflow-hidden", sizes[size], variants[variant], className);
 
   // Barrido de luz (shimmer) en hover, para las acciones destacadas.
@@ -77,7 +78,7 @@ export function Button({
   // Navegación interna cliente (sin recarga completa).
   if (to && !external) {
     return (
-      <Link to={to} onClick={onClick} className={classes} {...rest}>
+      <Link ref={ref as Ref<HTMLAnchorElement>} to={to} onClick={onClick} className={classes} {...rest}>
         {content}
       </Link>
     );
@@ -86,6 +87,7 @@ export function Button({
   if (href) {
     return (
       <a
+        ref={ref as Ref<HTMLAnchorElement>}
         href={href}
         onClick={onClick}
         className={classes}
@@ -99,8 +101,8 @@ export function Button({
   }
 
   return (
-    <button type="button" onClick={onClick} className={classes} {...rest}>
+    <button ref={ref as Ref<HTMLButtonElement>} type={type} onClick={onClick} className={classes} {...rest}>
       {content}
     </button>
   );
-}
+});

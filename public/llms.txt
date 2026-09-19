@@ -1,30 +1,45 @@
 # NUCLOUD
 
-> Agencia de IA y automatización con sede en Cuenca, Ecuador. Construye agentes inteligentes, automatiza procesos con n8n, desarrolla aplicaciones web e implementa infraestructura cloud para empresas en Ecuador y Latinoamérica.
+> Agencia de IA y automatización con sede en Cuenca, Ecuador. Construye agentes inteligentes, automatiza procesos de negocio, desarrolla aplicaciones web e implementa infraestructura cloud para empresas en Ecuador y Latinoamérica.
 
-NUCLOUD diseña sistemas a medida que reducen el trabajo manual hasta un 80% y operan 24/7. Atiende en español, con consultoría inicial gratuita y propuesta en menos de 24 horas (días laborables).
+NUCLOUD diseña sistemas a medida que responden en minutos y operan 24/7, sin que el cliente tenga que ampliar su equipo. Atiende en español, con respuesta en menos de 24 horas (días laborables).
 
 ## Servicios principales
-- **Automatización con IA**: agentes y chatbots que atienden clientes, califican leads, generan reportes y ejecutan tareas 24/7 sin intervención humana.
-- **Desarrollo web**: sitios y aplicaciones a medida, rápidas, escalables y orientadas a conversión.
-- **Integraciones & APIs**: conexión entre CRM, ERP, mensajería (WhatsApp, Instagram) y pasarelas de pago en un único flujo de datos.
+- **01 · Webs y landings**: presencia digital profesional orientada a conversión.
+- **02 · Apps y dashboards**: visibilidad en tiempo real del negocio en un panel único.
+- **03 · Automatizaciones**: elimina tareas manuales repetitivas con flujos automáticos de extremo a extremo.
+- **04 · Agentes IA y asistentes**: responden, cualifican y agendan automáticamente, 24/7.
+- **05 · Captación de leads**: sistema activo y medible de generación de contactos.
+- **06 · Agentes autónomos**: clasifican correos, gestionan tareas y resumen documentos sin supervisión constante.
+- **07 · Asistentes telefónicos**: responden, informan y agendan citas por voz, 24/7.
+- **08 · Reporting y CMI**: cuadro de mando integral con métricas del negocio en tiempo real.
+- **Integraciones & APIs**: conexión entre CRM, mensajería y pagos en un único flujo de datos.
 - **Infraestructura Cloud**: despliegue, monitorización y mantenimiento de arquitecturas seguras y preparadas para escalar.
-- **Automatización de procesos con n8n**: workflows que orquestan procesos completos con IA y bases de datos (p. ej. PostgreSQL).
 
 ## Stack y tecnologías
-- Orquestación de workflows: n8n
-- Modelos de lenguaje (LLMs) y agentes conversacionales con memoria
-- Bases de datos: PostgreSQL
-- Integraciones por API con CRM, ERP, WhatsApp e Instagram
-- Infraestructura cloud cifrada con separación de credenciales y datos sensibles
+- Integraciones: WhatsApp Business API, Instagram Business API, Stripe, HubSpot, Google Cloud, GoHighLevel, Slack
+- LLMs: OpenAI, Anthropic, Gemini, Meta
+- Orquestación: LangGraph, LangChain, n8n, Hermes Agent
+- ML: Python, PyTorch, Hugging Face, FastAPI, FastMCP, React, JavaScript, TypeScript, Tailwind CSS
+- Base de datos y RAG: PostgreSQL, Qdrant, Redis, Supabase, Neon, Airtable
+- DevOps: Docker, Dokploy, AWS
+- Automatización: Claude Code, Kiro, Antigravity
+- Red y seguridad: Cloudflare, Sentry, Traefik, Let's Encrypt
+- Meta Tech Provider — proveedor tecnológico verificado de Meta
 
 ## Cómo trabaja NUCLOUD
-1. Consultoría inicial gratuita para entender el problema y el alcance.
-2. Propuesta a medida en menos de 24 horas, sin compromiso.
-3. Implementación por fases, con entregas funcionales desde el inicio.
-4. Soporte continuo durante la implementación.
+1. Diagnóstico (días 1–3): entender la operación del negocio y el alcance real del sistema.
+2. Construcción (días 3–14): se conectan los canales y se construye el sistema.
+3. Validación (días 14–21): se prueba con conversaciones reales antes de entregar, con documentación y capacitación incluidas.
 
-Plazos de referencia: una automatización sencilla puede estar operativa en una o dos semanas; sistemas más complejos (agentes con memoria, integraciones con CRM/ERP, infraestructura cloud) suelen entregarse entre cuatro y ocho semanas.
+Plazos de referencia: una automatización sencilla puede estar operativa en una o dos semanas; los sistemas más completos (agentes conversacionales, integraciones múltiples) siguen el ciclo completo de 21 días.
+
+## Qué garantiza NUCLOUD
+- Tiempo de respuesta menor a dos minutos
+- Cero contactos sin registrar
+- Seguimiento automático
+- Reportes periódicos
+- No garantiza un número específico de ventas cerradas (depende del equipo comercial de cada negocio, no del sistema)
 
 ## Cobertura
 - Sede: Cuenca, Azuay, Ecuador
@@ -34,12 +49,13 @@ Plazos de referencia: una automatización sencilla puede estar operativa en una 
 ## Contacto
 - Sitio: https://nucloudai.com/
 - Email: nucloudai@gmail.com
-- WhatsApp: +593 96 332 2355
+- WhatsApp: +593 96 391 2365 / +593 98 377 3180
 - Instagram: https://www.instagram.com/nucloud_ai.ec/
 - Facebook: https://www.facebook.com/profile.php?id=61590267341001
+- LinkedIn: https://www.linkedin.com/company/nucloudai
+- TikTok: https://www.tiktok.com/@nucloud.ai
 
 ## Propuesta de valor
-- Consultoría inicial gratuita
 - Respuesta en menos de 24 horas (días laborables)
-- Propuesta a medida, sin compromiso
-- Implementación por fases con resultados medibles
+- Diagnóstico, construcción y validación en 21 días
+- Implementación por fases con entregas funcionales desde el inicio

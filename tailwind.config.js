@@ -5,14 +5,14 @@ export default {
     extend: {
       colors: {
         ink: {
-          DEFAULT: "#050505", // fondo principal
+          DEFAULT: "#0A0A0A", // fondo principal (Negro Profundo — NUCLOUD Speech)
           soft: "#0B0B0B", // fondo secundario
           raised: "#111111",
         },
         flame: {
-          DEFAULT: "#FF6B00", // naranja principal
-          glow: "#FF8C1A", // naranja glow
-          amber: "#FFB347", // ámbar
+          DEFAULT: "#FF6B00", // Naranja Nuclear — acento primario
+          glow: "#FF8A00", // Naranja Brillante — CTAs/hover (NUCLOUD Speech)
+          amber: "#FFB347", // ámbar — eyebrows/acentos suaves
         },
         fog: {
           DEFAULT: "#FFFFFF", // texto principal
@@ -20,10 +20,10 @@ export default {
         },
       },
       fontFamily: {
-        // Cabinet Grotesk: display arquitectónico/premium para titulares.
-        display: ['"Cabinet Grotesk"', "system-ui", "sans-serif"],
-        // Switzer: grotesca de texto neutra y muy legible para cuerpo/UI.
-        sans: ['"Switzer"', "system-ui", "-apple-system", '"Segoe UI"', "sans-serif"],
+        // Clash Display: display de marca para titulares (BRANDING.md / NUCLOUD Speech).
+        display: ['"Clash Display"', "system-ui", "sans-serif"],
+        // Satoshi: grotesca de cuerpo/UI de marca.
+        sans: ['"Satoshi"', "system-ui", "-apple-system", '"Segoe UI"', "sans-serif"],
         // JetBrains Mono: solo labels técnicos (la marca ES técnica, no disfraz).
         mono: ['"JetBrains Mono"', "ui-monospace", "SFMono-Regular", "monospace"],
       },
@@ -52,10 +52,15 @@ export default {
         glow: "0 0 0 1px rgba(255,107,0,0.12), 0 18px 60px -20px rgba(255,107,0,0.45)",
         "glow-sm": "0 0 30px -8px rgba(255,107,0,0.5)",
         "inner-line": "inset 0 1px 0 0 rgba(255,255,255,0.06)",
+        card: "0 8px 40px -12px rgba(0,0,0,0.8)",
+        button: "0 8px 30px -8px rgba(255,107,0,0.6)",
       },
       backgroundImage: {
-        "flame-gradient": "linear-gradient(135deg, #FF6B00 0%, #FF8C1A 50%, #FFB347 100%)",
+        "flame-gradient": "linear-gradient(135deg, #FF6B00 0%, #FF8A00 50%, #FFB347 100%)",
         "radial-glow": "radial-gradient(circle at center, rgba(255,107,0,0.18), transparent 70%)",
+      },
+      transitionTimingFunction: {
+        brand: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
       keyframes: {
         "pulse-node": {

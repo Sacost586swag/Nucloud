@@ -1,16 +1,20 @@
-import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 import { cn } from "@/utils/cn";
-import { fadeUp, viewportOnce } from "@/hooks/useReveal";
 
 interface SectionHeadingProps {
   eyebrow: string;
-  title: React.ReactNode;
+  title: ReactNode;
   description?: string;
   align?: "left" | "center";
   className?: string;
 }
 
-/** Encabezado de sección consistente: eyebrow + título + descripción. */
+/**
+ * Encabezado de sección consistente: eyebrow + título + descripción.
+ * Puramente presentacional — el reveal lo aporta el `data-reveal="up"` de
+ * este wrapper, capturado por el useSectionReveal() de la sección que lo
+ * contiene (no crea su propio scope de GSAP).
+ */
 export function SectionHeading({
   eyebrow,
   title,
@@ -19,11 +23,8 @@ export function SectionHeading({
   className,
 }: SectionHeadingProps) {
   return (
-    <motion.div
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewportOnce}
+    <div
+      data-reveal="up"
       className={cn(
         "flex flex-col gap-5",
         align === "center" ? "items-center text-center" : "items-start text-left",
@@ -49,6 +50,6 @@ export function SectionHeading({
           {description}
         </p>
       )}
-    </motion.div>
+    </div>
   );
 }

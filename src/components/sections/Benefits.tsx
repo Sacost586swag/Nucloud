@@ -1,44 +1,48 @@
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlowBackground } from "@/components/ui/GlowBackground";
 import { Button } from "@/components/ui/Button";
-import { BENEFITS, type Benefit } from "@/constants/content";
-import { fadeUp, stagger, viewportOnce } from "@/hooks/useReveal";
-import { useCountUp } from "@/hooks/useCountUp";
+import { GUARANTEE_STATS, type GuaranteeStat } from "@/constants/content/guarantees";
+import { useSectionReveal, type RevealFrom } from "@/motion/useSectionReveal";
 
 interface SectionProps {
   /** Si se indica, muestra un CTA "Ver más" hacia la subpágina (solo en Home). */
   detailTo?: string;
 }
 
+/**
+ * Sección de Garantías (antes "Beneficios", conserva id="beneficios" para no
+ * romper anclas existentes) — compromisos reales y verificables (FR-018), no
+ * estadísticas de mejora inventadas.
+ */
 export function Benefits({ detailTo }: SectionProps = {}) {
+  const scope = useSectionReveal<HTMLElement>();
+
   return (
-    <section id="beneficios" className="relative scroll-mt-24 py-24 sm:py-32">
+    <section ref={scope} id="beneficios" className="relative scroll-mt-24 py-24 sm:py-32">
       <GlowBackground position="bottom" />
       <div className="container-x">
         <SectionHeading
-          eyebrow="Beneficios"
-          title={<>Resultados que se <span className="text-flame">notan</span> en tu operación</>}
-          description="Más velocidad, menos trabajo manual y una experiencia de cliente que marca la diferencia."
+          eyebrow="Garantías"
+          title={<>Compromisos reales, no promesas <span className="text-flame">al aire</span></>}
+          description="Esto es lo que garantizamos en cada sistema que entregamos — verificable desde el primer reporte."
         />
 
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {BENEFITS.map((b) => (
-            <BenefitCard key={b.label} benefit={b} />
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {GUARANTEE_STATS.map((stat, i) => (
+            <StatCard
+              key={stat.label}
+              stat={stat}
+              delay={i * 0.08}
+              from={(["left", "bottom", "bottom", "right"] as const)[i % 4]}
+            />
           ))}
-        </motion.div>
+        </div>
 
         {detailTo && (
-          <div className="mt-12 flex justify-center">
+          <div data-reveal="up" className="mt-12 flex justify-center">
             <Button to={detailTo} variant="secondary" size="lg">
-              Ver los beneficios en detalle
+              Ver las garantías en detalle
               <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
@@ -48,38 +52,23 @@ export function Benefits({ detailTo }: SectionProps = {}) {
   );
 }
 
-function BenefitCard({ benefit }: { benefit: Benefit }) {
-  // Extrae el número del string ("+70" -> 70) para animarlo; conserva el prefijo (+/-).
-  const numeric = parseInt(benefit.value.replace(/[^\d]/g, ""), 10);
-  const isNumeric = !Number.isNaN(numeric);
-  const prefix = benefit.value.replace(/[\d]/g, "").replace(benefit.suffix ?? "", "");
-  const { value, ref } = useCountUp(isNumeric ? numeric : 0);
-
+function StatCard({ stat, delay, from }: { stat: GuaranteeStat; delay: number; from: RevealFrom }) {
   return (
-    <motion.div
-      variants={fadeUp}
+    <div
+      data-reveal="blur"
+      data-reveal-from={from}
+      data-reveal-delay={delay}
       className="group relative overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.015] p-7 transition-colors hover:border-flame/25"
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-flame/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
       />
-      <p
-        ref={ref as React.RefObject<HTMLParagraphElement>}
-        className="font-display text-5xl font-semibold tracking-tightest text-flame"
-      >
-        {isNumeric ? (
-          <>
-            {prefix}
-            {value}
-            {benefit.suffix}
-          </>
-        ) : (
-          benefit.value
-        )}
+      <p data-reveal="scramble" className="font-display text-5xl font-semibold tracking-tightest text-flame">
+        {stat.value}
       </p>
-      <h3 className="mt-4 font-display text-lg font-semibold text-fog">{benefit.label}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-fog-muted">{benefit.description}</p>
-    </motion.div>
+      <h3 className="mt-4 font-display text-lg font-semibold text-fog">{stat.label}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-fog-muted">{stat.description}</p>
+    </div>
   );
 }

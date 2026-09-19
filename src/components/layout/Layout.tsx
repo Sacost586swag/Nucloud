@@ -3,32 +3,38 @@ import { Outlet } from "react-router-dom";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { SideDrawer } from "@/components/layout/SideDrawer";
-import { BackgroundVideo } from "@/components/layout/BackgroundVideo";
+import { Atmosphere } from "@/components/layout/Atmosphere";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
+import { SmoothScroll } from "@/motion/SmoothScroll";
+import { RouteScrollManager } from "@/motion/RouteScrollManager";
 
 /**
- * Chrome compartido por todas las rutas: fondo de vídeo dirigido por scroll,
- * Navbar + drawer lateral, contenido (Outlet), Footer y botón flotante de
- * WhatsApp. Es dueño del estado del drawer.
+ * Chrome compartido por todas las rutas (salvo /embedded-whatsapp, que vive
+ * fuera de este árbol — Principio V): scroll suave (Lenis), atmósfera de
+ * fondo, Navbar + drawer lateral, contenido (Outlet), Footer y botón
+ * flotante de WhatsApp. Es dueño del estado del drawer.
  *
- * El fondo va en `z-0` (fijo) y todo el contenido en una capa `relative z-10`
- * por encima; el `body` pinta `#050505` como fallback.
+ * La atmósfera va en `z-0` (fija) y todo el contenido en una capa
+ * `relative z-10` por encima.
  */
 export function Layout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <div className="grain relative min-h-screen">
-      <BackgroundVideo />
-      <div className="relative z-10">
-        <Navbar onMenuClick={() => setDrawerOpen(true)} />
-        <SideDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
-        <FloatingWhatsApp />
+    <SmoothScroll>
+      <RouteScrollManager />
+      <div className="relative min-h-screen overflow-x-clip">
+        <Atmosphere />
+        <div className="relative z-10">
+          <Navbar onMenuClick={() => setDrawerOpen(true)} />
+          <SideDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+          <main>
+            <Outlet />
+          </main>
+          <Footer />
+          <FloatingWhatsApp />
+        </div>
       </div>
-    </div>
+    </SmoothScroll>
   );
 }

@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Plus, ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlowBackground } from "@/components/ui/GlowBackground";
 import { Button } from "@/components/ui/Button";
-import { FAQS } from "@/constants/content";
-import { fadeUp, stagger, viewportOnce } from "@/hooks/useReveal";
+import { FAQS } from "@/constants/content/faq";
+import { useSectionReveal } from "@/motion/useSectionReveal";
 import { cn } from "@/utils/cn";
 
 interface SectionProps {
@@ -15,9 +14,10 @@ interface SectionProps {
 
 export function FAQ({ detailTo }: SectionProps = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const scope = useSectionReveal<HTMLElement>();
 
   return (
-    <section id="faq" className="relative scroll-mt-24 py-24 sm:py-32">
+    <section ref={scope} id="faq" className="relative scroll-mt-24 py-24 sm:py-32">
       <GlowBackground position="top" />
       <div className="container-x">
         <SectionHeading
@@ -27,22 +27,17 @@ export function FAQ({ detailTo }: SectionProps = {}) {
               Lo que <span className="text-flame">más nos preguntan</span> antes de empezar
             </>
           }
-          description="Respuestas directas sobre cómo trabajamos, plazos, costes y seguridad. ¿Te falta alguna? Escríbenos."
+          description="Respuestas directas sobre cómo trabajamos, plazos y seguridad. ¿Te falta alguna? Escríbenos."
         />
 
-        <motion.ul
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="mx-auto mt-14 flex max-w-3xl flex-col gap-3"
-        >
+        <ul className="mx-auto mt-14 flex max-w-3xl flex-col gap-3">
           {FAQS.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
-              <motion.li
+              <li
                 key={faq.question}
-                variants={fadeUp}
+                data-reveal="up"
+                data-reveal-delay={Math.min(i, 4) * 0.05}
                 className="overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.015] transition-colors hover:border-flame/25"
               >
                 <button
@@ -52,9 +47,7 @@ export function FAQ({ detailTo }: SectionProps = {}) {
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                   className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                 >
-                  <h3 className="font-display text-base font-medium text-fog sm:text-lg">
-                    {faq.question}
-                  </h3>
+                  <h3 className="font-display text-base font-medium text-fog sm:text-lg">{faq.question}</h3>
                   <span
                     aria-hidden
                     className={cn(
@@ -65,20 +58,25 @@ export function FAQ({ detailTo }: SectionProps = {}) {
                     <Plus className="h-4 w-4" strokeWidth={2} />
                   </span>
                 </button>
+                {/* Truco grid-rows: anima a la altura intrínseca sin medir el DOM en JS. */}
                 <div
                   id={`faq-panel-${i}`}
-                  hidden={!isOpen}
-                  className="px-6 pb-6 text-[15px] leading-relaxed text-fog-muted"
+                  className={cn(
+                    "grid transition-[grid-template-rows] duration-300 ease-out",
+                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  )}
                 >
-                  {faq.answer}
+                  <div className="overflow-hidden">
+                    <p className="px-6 pb-6 text-[15px] leading-relaxed text-fog-muted">{faq.answer}</p>
+                  </div>
                 </div>
-              </motion.li>
+              </li>
             );
           })}
-        </motion.ul>
+        </ul>
 
         {detailTo && (
-          <div className="mt-12 flex justify-center">
+          <div data-reveal="up" className="mt-12 flex justify-center">
             <Button to={detailTo} variant="secondary" size="lg">
               Ver todas las preguntas
               <ArrowRight className="h-4 w-4" />

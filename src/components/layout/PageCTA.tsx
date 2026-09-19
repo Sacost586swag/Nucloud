@@ -1,9 +1,8 @@
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { fadeUp, viewportOnce } from "@/hooks/useReveal";
-import { WHATSAPP_LINK } from "@/constants/site";
+import { WhatsAppCTA } from "@/components/whatsapp/WhatsAppCTA";
+import { useSectionReveal } from "@/motion/useSectionReveal";
 
 interface PageCTAProps {
   title?: ReactNode;
@@ -17,22 +16,20 @@ interface PageCTAProps {
  * visual que FinalCTA: tarjeta redondeada con resplandor naranja.
  */
 export function PageCTA({ title, description, children }: PageCTAProps) {
+  const scope = useSectionReveal<HTMLElement>();
+
   return (
-    <section className="relative py-20 sm:py-28">
+    <section ref={scope} className="relative py-20 sm:py-28">
       <div className="container-x">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
+        <div
+          data-reveal="up"
           className="relative overflow-hidden rounded-[2.5rem] border border-flame/20 bg-ink-soft px-7 py-14 text-center sm:px-12 sm:py-20"
         >
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
             style={{
-              background:
-                "radial-gradient(circle at 50% 0%, rgba(255,107,0,0.22), transparent 60%)",
+              background: "radial-gradient(circle at 50% 0%, rgba(255,107,0,0.22), transparent 60%)",
             }}
           />
           <div aria-hidden className="absolute inset-0 grid-lines opacity-40 mask-fade-b" />
@@ -53,10 +50,10 @@ export function PageCTA({ title, description, children }: PageCTAProps) {
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               {children ?? (
                 <>
-                  <Button href={WHATSAPP_LINK} external size="lg" className="px-8">
+                  <WhatsAppCTA size="lg" className="px-8">
                     <WhatsAppIcon className="h-5 w-5" />
                     Hablar por WhatsApp
-                  </Button>
+                  </WhatsAppCTA>
                   <Button to="/contacto" variant="secondary" size="lg">
                     Enviar solicitud
                   </Button>
@@ -64,7 +61,7 @@ export function PageCTA({ title, description, children }: PageCTAProps) {
               )}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
